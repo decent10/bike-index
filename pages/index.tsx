@@ -1,9 +1,32 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { useFetch } from "../hooks/api/useFetch";
+import { SearchForm } from "../components/Search";
+import { ListItem } from "../components/ListItem/ListItem";
 
 const Home: NextPage = () => {
+  const [search, setSearch] = React.useState<string>("");
+  const { data, refetch, error, isLoading, isFetching } = useFetch(
+    "bikes",
+    `/search?query=${search}&stolenness=non`,
+    {
+      enabled: false,
+    }
+  );
+  const onFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    refetch();
+  };
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+  if (isFetching) return <div>Loading...</div>;
+
+  if (error) return <div>An error has occurred: " + error?.message</div>;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,41 +39,30 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <SearchForm
+          value={search}
+          onSubmit={onFormSubmit}
+          onSearchChange={onSearchChange}
+        />
+        {data?.bikes ? (
+          <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <ul className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              {data?.bikes.map(({ id, title, description, thumb }: any) => {
+                return (
+                  <ListItem
+                    key={id}
+                    id={id}
+                    title={title}
+                    description={description}
+                    image={thumb}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+        ) : (
+          <>No bikes found</>
+        )}
       </main>
 
       <footer className={styles.footer}>
@@ -59,14 +71,14 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

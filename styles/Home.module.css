@@ -66,10 +66,13 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+     grid-column-gap: 48px;
+    -moz-column-gap: 48px;
+    column-gap: 48px;
+    margin-top: 64px;
+    margin-bottom: 96px;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
   max-width: 800px;
 }
 
