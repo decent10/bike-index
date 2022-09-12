@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="my-6 text-4xl text-blue-500">
+        <h1 className="my-6 text-2xl md:text-4xl text-blue-500">
           Welcome to <a href="https://bikeindex.org/">Bike Index!</a>
         </h1>
         <SearchForm
