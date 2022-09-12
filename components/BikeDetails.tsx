@@ -46,7 +46,7 @@ export const BikeDetails = ({
             <div className="flex ml-6 items-center">
               <span className="mr-3">Frame Size</span>
               <div className="relative rounded border appearance-none capitalize border-gray-400 py-1 focus:outline-none text-base  p-1">
-                {frameSize || "M"}
+                {frameSize}
               </div>
             </div>
           </div>

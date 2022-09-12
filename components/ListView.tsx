@@ -9,13 +9,13 @@ export const ListView = ({ items }: ListViewProps) => {
   return (
     <ul className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       {items.map(
-        ({ id, title, thumb, manufacturer_name: manufacturerName }: any) => {
+        ({ id, title, thumb, manufacturer_name: manufacturer }: any) => {
           return (
             <ListItem
               key={id}
               id={id}
               title={title}
-              manufacturerName={manufacturerName}
+              manufacturerName={manufacturer}
               image={thumb}
             />
           );
