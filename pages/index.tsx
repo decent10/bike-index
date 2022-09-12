@@ -7,25 +7,30 @@ import { useFetch } from "../hooks/api/useFetch";
 import { SearchForm } from "../components/Search";
 import { Spinner } from "../components/Spinner";
 import ListView from "../components/ListView";
-const PAGE = 50;
+
+const PAGE_SIZE = 50;
+
 const Home: NextPage = () => {
   const [search, setSearch] = React.useState<string>("");
-  const { data, refetch, error, isLoading, isFetching } = useFetch(
+  const { data, refetch, error, isFetching } = useFetch(
     "bikes",
-    `/search?query=${search}&stolenness=non&per_page=${PAGE}`,
+    `/search?query=${search}&stolenness=non&per_page=${PAGE_SIZE}`,
     {
       enabled: false,
     }
   );
+
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     refetch();
   };
+
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   if (error) return <div>An error has occurred</div>;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -33,7 +38,6 @@ const Home: NextPage = () => {
         <meta name="description" content="meta search for bikes " />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <h1 className="my-6 text-2xl md:text-4xl text-blue-500">
           Welcome to <a href="https://bikeindex.org/">Bike Index!</a>

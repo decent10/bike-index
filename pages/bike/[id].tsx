@@ -8,7 +8,7 @@ function BikeDetail() {
   const router = useRouter();
   const bikeId = router.query.id;
 
-  const { data, isLoading, error } = useFetch(
+  const { data, isLoading } = useFetch(
     `bike_${bikeId}`,
     `/bikes/${Number(bikeId)}`,
     {
@@ -16,6 +16,7 @@ function BikeDetail() {
     }
   );
   if (isLoading) return <Spinner />;
+
   const { bike } = data;
 
   return (

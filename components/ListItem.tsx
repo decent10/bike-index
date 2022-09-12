@@ -1,4 +1,5 @@
 import React from "react";
+
 type ListItemProps = {
   id: string;
   title: string;
@@ -9,7 +10,6 @@ type ListItemProps = {
 export const ListItem = ({
   id,
   title,
-
   image,
   manufacturerName,
 }: ListItemProps) => {
