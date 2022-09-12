@@ -40,7 +40,7 @@ export const SearchForm = ({
         <input
           type="search"
           id="bike-search"
-          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-pink-300 focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
+          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-blue-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search Cities..."
           value={value}
           onChange={onSearchChange}
@@ -48,7 +48,7 @@ export const SearchForm = ({
         />
         <button
           type="submit"
-          className="text-white absolute right-2.5 bottom-2.5 bg-blue-400 hover:bg-pink-500 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-4 py-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+          className="text-white absolute right-2.5 bottom-2.5 bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Search
         </button>

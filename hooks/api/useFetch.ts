@@ -19,9 +19,6 @@ const fetcher = async (url:string, options?:RequestInit) =>{
    }
 }
 
-export const useFetch = (queryName:string,path:string, queryConfig?:Omit<UseQueryOptions<any, unknown, any, string[]>, "initialData" | "queryFn" | "queryKey"> & { initialData?: (() => undefined) | undefined; }) =>{
-
-    return useQuery([queryName], () => fetcher(path),queryConfig);
-}
+export const useFetch = (queryName:string,path:string, queryConfig?:Omit<UseQueryOptions<any, unknown, any, string[]>, "initialData" | "queryFn" | "queryKey"> & { initialData?: (() => undefined) | undefined; }) => useQuery([queryName], () => fetcher(path),queryConfig);
 
 
